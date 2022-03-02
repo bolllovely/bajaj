@@ -3,20 +3,13 @@ const express = require('express'); // Importing express module
 
 const app = express(); // Creating an express object
 
-const port = 8000; // Setting an port for this application
+const port = process.env.PORT; // Setting an port for this application
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 // Starting server using listen function
-app.listen(port, function (err) {
-if(err){
-	console.log("Error while starting server");
-}
-else{
-	console.log("Server has been started at "+port);
-}
-})
+
 
 app.get('/', function (req, res) {
 	res.send("<h1> Welcome to assignment from harsh gupta .<br>Please visit <a href='https://hiharsh.netlify.app/'>https://hiharsh.netlify.app/</a> to know more about me</h1>");
@@ -43,3 +36,12 @@ app.post('/bfhl', function (req, res, next) {
 	// console.log(req.body)
 	res.json(response_data)
   })
+
+  app.listen(port, function (err) {
+	if(err){
+		console.log("Error while starting server");
+	}
+	else{
+		console.log("Server has been started at "+port);
+	}
+	})
